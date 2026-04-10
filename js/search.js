@@ -11,6 +11,7 @@
 
 import { ripple } from "./utils/ripple.js";
 import { addEventOnElements } from "./utils/event.js";
+import { segment } from "./segment_btn.js";
 
 /**
  * Search view toggle in small devices
@@ -37,3 +38,5 @@ $searchClearBtn.addEventListener("click", () => $searchField.value = "");
 const /** {NodeElement} */ $searchSegment = document.querySelector("[data-segment='search']");
 const /** {NodeElement} */ $activeSegmentBtn = $searchSegment.querySelector("[data-segment-btn].selected");
 window.searchType = $activeSegmentBtn.dataset.segmentValue;
+
+segment($searchSegment, segmentValue => window.searchType = segmentValue);
