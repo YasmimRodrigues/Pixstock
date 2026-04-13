@@ -40,3 +40,51 @@ const /** {NodeElement} */ $activeSegmentBtn = $searchSegment.querySelector("[da
 window.searchType = $activeSegmentBtn.dataset.segmentValue;
 
 segment($searchSegment, segmentValue => window.searchType = segmentValue);
+
+/**
+ * Search submit
+ */
+
+const /** {NodeElement} */ $searchBtn = document.querySelector("[data-search-btn]");
+
+$searchBtn.addEventListener("click", function () {
+    const /** {Boolean} */ searchValue = $searchField.value.trim();
+    console.log(searchValue);
+
+    if(searchValue) {
+        updateSearchHistory(searchValue);
+    }
+});
+
+/**
+ * Search history
+ */
+
+// Initial search history
+
+let /** {Object} */ searchHistory = { items: [] };
+
+if(window.localStorage.getItem("search_history")) {
+    searchHistory = JSON.parse(window.localStorage.getItem("search_history"));
+} else {
+    window.localStorage.setItem("search_history", JSON.stringify(searchHistory));
+}
+
+// Update search history
+
+const updateSearchHistory = searchValue => {
+
+    /**
+     * If the searched value is already present in search list
+     * then remove that one and add the search value at the beginnig of the search list
+     * This ensures that the most recent search is at the top of the history
+     */
+
+    if(searchHistory.items.includes(searchValue)) {
+        searchHistory.items.splice(searchHistory.items.indexOf(searchValue), 1);
+    }
+
+    searchHistory.items.unshift(searchValue);
+
+    window.localStorage.setItem("search_history", JSON.stringify(searchHistory));
+}
