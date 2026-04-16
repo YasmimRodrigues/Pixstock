@@ -53,6 +53,8 @@ $searchBtn.addEventListener("click", function () {
 
     if(searchValue) {
         updateSearchHistory(searchValue);
+        window.filterObj.query = searchValue;
+        updateUrl(window.filterObj, window.searchType);
     }
 });
 
@@ -87,4 +89,32 @@ const updateSearchHistory = searchValue => {
     searchHistory.items.unshift(searchValue);
 
     window.localStorage.setItem("search_history", JSON.stringify(searchHistory));
+}
+
+/**
+ * Render search history items in search list
+ */
+
+const /** {NodeElement} */ $searchList = document.querySelector("[data-search-list]");
+const /** {Number} */ historyLen = searchHistory.items.length;
+
+for(let i = 0; i < historyLen & i <= 5; i++) {
+    const /** {NodeElement} */ $listItem = document.createElement("button");
+    $listItem.classList.add("list-item");
+
+    $listItem.innerHTML = `
+        <span class="material-symbols-outlined leading-icon" aria-hidden="true">history</span>
+
+        <span class="body-large text">${searchHistory.items[i]}</span>
+
+        <div class="state-layer"></div>
+    `;
+
+    ripple($listItem);
+
+    $listItem.addEventListener("click", function() {
+        $searchField.value = this.children[1].textContent;
+        $searchBtn.click();
+    });
+    $searchList.appendChild($listItem);
 }
