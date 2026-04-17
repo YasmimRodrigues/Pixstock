@@ -12,6 +12,7 @@
 import { ripple } from "./utils/ripple.js";
 import { addEventOnElements } from "./utils/event.js";
 import { segment } from "./segment_btn.js";
+import { updateUrl } from "./utils/updateUrl.js";
 
 /**
  * Search view toggle in small devices
@@ -56,6 +57,14 @@ $searchBtn.addEventListener("click", function () {
         window.filterObj.query = searchValue;
         updateUrl(window.filterObj, window.searchType);
     }
+});
+
+/**
+ * Submit search when press on "Enter" key
+ */
+
+$searchField.addEventListener("keydown", e => {
+    if(e.key === "Enter" && $searchField.value.trim()) $searchBtn.click();
 });
 
 /**
