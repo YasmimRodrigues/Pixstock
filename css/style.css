@@ -818,16 +818,30 @@ button:disabled {
 \*-----------------------------------*/
 
 .banner {
-  /* display: flex;
-  gap: 16px; */
+  display: flex;
+  gap: 16px;
   padding-inline: 16px;
   padding-block-end: 18px;
   margin-block-end: 24px;
-  /* overflow-x: auto;
+  overflow-x: auto;
   scroll-snap-type: inline mandatory;
   scroll-snap-stop: always;
-  overscroll-behavior-x: contain; */
+  overscroll-behavior-x: contain;
 }
+
+.banner::-webkit-scrollbar { height: 6px; }
+
+.banner::-webkit-scrollbar-track {
+  background-color: var(--surface-variant);
+  border-radius: var(--radius-full);
+}
+
+.banner::-webkit-scrollbar-thumb {
+  background-color: var(--on-surface-variant);
+  border-radius: var(--radius-full);
+}
+
+.banner::-webkit-scrollbar-button { width: calc(25% - 28px); }
 
 .banner-card {
   --gradient-direction: 180deg;
@@ -842,9 +856,53 @@ button:disabled {
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  /* scroll-snap-align: start;
-  scroll-margin-inline: 16px; */
+  scroll-snap-align: start;
+  scroll-margin-inline: 16px;
   z-index: 1;
+}
+
+[data-theme="dark"] .banner-card {
+  --primary-hsl: 178, 100%, 16%;
+  --secondary-hsl: 38, 100%, 20%;
+  --tertiary-hsl: 356, 66%, 32%;
+}
+
+.banner-card.primary {
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+.banner-card.secondary {
+  background-color: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.banner-card.tertiary {
+  background-color: var(--tertiary-container);
+  color: var(--on-tertiary-container);
+}
+
+.banner-card .card-content {
+  --gradient-hsl: var(--primary-hsl);
+  height: 100%;
+  width: 100%;
+  display: grid;
+  align-content: flex-end;
+  gap: 12px;
+  padding: 24px;
+  background-image: linear-gradient(var(--gradient-direction),
+  hsla(var(--gradient-hsl), 0) 0%,
+  hsla(var(--gradient-hsl), 0.36) 24%,
+  hsla(var(--gradient-hsl), 0.64) 48%,
+  hsla(var(--gradient-hsl), 1) 68%);
+}
+
+.banner-card.secondary .card-content {
+  --gradient-hsl: var(--secondary-hsl);
+}
+
+.banner-card.tertiary .card-content {
+  --gradient-hsl: var(--tertiary-hsl);
 }
 
 .banner-card .card-title { width: 16ch; }
@@ -870,7 +928,35 @@ button:disabled {
   z-index: -1;
 }
 
+.banner-card .card-banner {
+  border-radius: var(--radius-large);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
 
+.banner-card .card-banner .video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scale: 1.05;
+}
+
+.banner-card.primary .card-banner {
+  background-color: var(--on-primary-container);
+  box-shadow: 0 2px 2px -1px #00201f;
+}
+
+.banner-card.secondary .card-banner {
+  background-color: var(--on-secondary-container);
+  box-shadow: 0 2px 2px -1px #2a1800;
+}
+
+.banner-card.tertiary .card-banner {
+  background-color: var(--on-tertiary-container);
+  box-shadow: 0 2px 2px -1px #410006;
+}
 
 /*-----------------------------------*\
   #CURATED PHOTOS & POPULAR VIDEO
