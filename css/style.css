@@ -707,6 +707,38 @@ button:disabled {
  * Button
  */
 
+ .btn {
+  height: 40px;
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 24px;
+  border-radius: var(--radius-full);
+  transition: box-shadow var(--motion-duration-short-2) var(--motion-easing-linear);
+ }
+
+ .btn:hover { box-shadow: var(--elevation-1); }
+
+ .btn:focus { box-shadow: none; }
+
+ .btn-primary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  --state-layer-bg: var(--on-primary);
+ }
+
+ .btn-secondary {
+   background-color: var(--secondary);
+   color: var(--on-secondary);
+   --state-layer-bg: var(--on-secondary);
+ }
+
+ .btn-tertiary {
+   background-color: var(--tertiary);
+   color: var(--on-tertiary);
+   --state-layer-bg: var(--on-tertiary);
+ }
 
 /**
  * Card
@@ -774,7 +806,10 @@ button:disabled {
   #MAIN
 \*-----------------------------------*/
 
-
+.main {
+  padding-block-start: calc(var(--top-app-bar-height) + 16px);
+  flex-grow: 1;
+}
 
 
 
@@ -782,7 +817,58 @@ button:disabled {
   #BANNER
 \*-----------------------------------*/
 
+.banner {
+  /* display: flex;
+  gap: 16px; */
+  padding-inline: 16px;
+  padding-block-end: 18px;
+  margin-block-end: 24px;
+  /* overflow-x: auto;
+  scroll-snap-type: inline mandatory;
+  scroll-snap-stop: always;
+  overscroll-behavior-x: contain; */
+}
 
+.banner-card {
+  --gradient-direction: 180deg;
+  --primary-hsl: 178, 89%, 70%;
+  --secondary-hsl: 32, 100%, 85%;
+  --tertiary-hsl: 3, 100%, 92%;
+
+  position: relative;
+  height: 360px;
+  min-width: 100%;
+  border-radius: var(--radius-extra-large);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  /* scroll-snap-align: start;
+  scroll-margin-inline: 16px; */
+  z-index: 1;
+}
+
+.banner-card .card-title { width: 16ch; }
+
+.banner-card .card-text { display: none; }
+
+.banner-card .card-grid {
+  position: absolute;
+  top: -16px;
+  left: -16px;
+  right: -16px;
+  bottom: 28%;
+  display: grid;
+  gap: 12px;
+  grid-template-areas: 
+  "b1 b1 b2 b2 b3 b3 b3 b3"
+  "b1 b1 b2 b2 b3 b3 b3 b3"
+  "b4 b4 b2 b2 b3 b3 b3 b3"
+  "b4 b4 b5 b5 b5 b6 b6 b6"
+  "b4 b4 b5 b5 b5 b6 b6 b6";
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  z-index: -1;
+}
 
 
 
