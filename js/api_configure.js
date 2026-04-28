@@ -73,6 +73,63 @@ export const /** {Object} */ client = {
         detail(id, callback) {
             fetchData(`${root.default}photos/${id}`, callback);
         }
+    },
+
+    videos: {
+
+        /**
+         * Search videos
+         * @param {Object} parameters Url Object
+         * @param {Function} callback Callback function
+         */
+
+        search(parameters, callback) {
+            requestUrl = `${root.videos}search?${urlEncode(parameters)}`;
+            fetchData(requestUrl, callback);
+        },
+
+        /**
+         * Get Popular videos
+         * @param {Object} parameters Url Object
+         * @param {Function} callback Callback function
+         */
+        popular(parameters, callback) {
+            fetchData(`${root.videos}popular?${urlEncode(parameters)}`, callback);
+        },
+
+        /**
+         * Get single video detail
+         * @param {String} id Video ID
+         * @param {Function} callback Callback function
+         */
+
+        detail(id, callback) {
+            fetchData(`${root.videos}videos/${id}`, callback);
+        }
+    },
+
+    collections: {
+
+        /**
+         * Get featured collections
+         * @param {Object} parameters Url Object
+         * @param {Function} callback Callback function
+         */
+        featured(parameters, callback) {
+            requestUrl = `${root.default}collections/featured?${urlEncode(parameters)}`;
+            fetchData(requestUrl, callback);
+        },
+
+        /**
+         * Get a collection medias
+         * @param {String} id Collection ID
+         * @param {Object} parameters Url object
+         * @param {Function} callback Callback function
+         */
+        detail(id, parameters, callback) {
+            requestUrl = `${root.default}/collections/${id}?${urlEncode(parameters)}`;
+            fetchData(requestUrl, callback);
+        }
     }
 
 }
