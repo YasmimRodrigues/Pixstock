@@ -10,6 +10,7 @@
  */
 
 import { client } from "./api_configure.js";
+import { photoCard } from "./photo_card.js";
 
 /**
  * Render curated photos in home page
