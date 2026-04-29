@@ -26,6 +26,8 @@ client.photos.curated({ page: 1, per_page: 20}, data => {
 
     data.photos.forEach(photo => {
         const /** {NodeElement} */ $photoCard = photoCard(photo);
+
+        $photoGrid.appendChild($photoCard);
     });
 
 });
