@@ -20,7 +20,6 @@ import { favorite } from "./favorite.js";
 
 export const photoCard = photo => {
     const /** {String} */ root = window.location.origin;
-    console.log(photo);
 
     const {
         alt, 
