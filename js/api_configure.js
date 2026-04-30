@@ -60,6 +60,7 @@ export const /** {Object} */ client = {
          * @param {Object} parameters Url Object
          * @param {Function} callback Callback function
          */
+        
         curated(parameters, callback) {
             fetchData(`${root.default}curated?${urlEncode(parameters)}`, callback);
         },
@@ -93,6 +94,7 @@ export const /** {Object} */ client = {
          * @param {Object} parameters Url Object
          * @param {Function} callback Callback function
          */
+
         popular(parameters, callback) {
             fetchData(`${root.videos}popular?${urlEncode(parameters)}`, callback);
         },
@@ -115,6 +117,7 @@ export const /** {Object} */ client = {
          * @param {Object} parameters Url Object
          * @param {Function} callback Callback function
          */
+
         featured(parameters, callback) {
             requestUrl = `${root.default}collections/featured?${urlEncode(parameters)}`;
             fetchData(requestUrl, callback);
@@ -126,6 +129,7 @@ export const /** {Object} */ client = {
          * @param {Object} parameters Url object
          * @param {Function} callback Callback function
          */
+
         detail(id, parameters, callback) {
             requestUrl = `${root.default}/collections/${id}?${urlEncode(parameters)}`;
             fetchData(requestUrl, callback);
