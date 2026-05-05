@@ -23,8 +23,6 @@ export const videoCard = video => {
 
     const /** {String} */ root = window.location.origin;
 
-    // console.log(video);
-
     const {
         height,
         width,
