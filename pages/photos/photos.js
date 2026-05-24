@@ -51,8 +51,6 @@ const renderPhotos = function (currentPage) {
 
     client.photos[searchObj ? "search" : "curated"]({ ...searchObj, per_page: perPage, page: currentPage }, data => {
 
-        console.log(data);
-
         totalPage = Math.ceil(data.total_results / perPage);
 
         data.photos.forEach(photo => {
@@ -62,7 +60,32 @@ const renderPhotos = function (currentPage) {
             updateGrid($photoCard, photoGrid.$columnsHeight, photoGrid.$columns);
         });
 
+        // when photos loaded
+        isLoaded = true;
+        
+        //when no more photo found, hide loader
+        if(currentPage >= totalPage) $loader.style.display = "none";
+
     });
 }
 
 renderPhotos(currentPage);
+
+/**
+ * Load more photos
+ */
+
+const /** {NodeElement} */ $loader = document.querySelector("[data-loader]");
+let /** {Boolean} */ isLoaded = true;
+
+window.addEventListener("scroll", function () {
+
+    if($loader.getBoundingClientRect().top < (window.innerHeight * 2) && currentPage <= totalPage && isLoaded) {
+   
+        currentPage++;
+        renderPhotos(currentPage);
+        isLoaded = false;
+
+    }
+
+});
