@@ -41,3 +41,28 @@ const /** {String} */ title = searchObj ? `${searchObj.query} photos` : "Curated
 
 $title.textContent = title;
 document.title = title;
+
+/**
+ * Render all photos
+ * @param {Number} currentPage Current page number
+ */
+
+const renderPhotos = function (currentPage) {
+
+    client.photos[searchObj ? "search" : "curated"]({ ...searchObj, per_page: perPage, page: currentPage }, data => {
+
+        console.log(data);
+
+        totalPage = Math.ceil(data.total_results / perPage);
+
+        data.photos.forEach(photo => {
+
+            const /** {NodeElement} */ $photoCard = photoCard(photo);
+
+            updateGrid($photoCard, photoGrid.$columnsHeight, photoGrid.$columns);
+        });
+
+    });
+}
+
+renderPhotos(currentPage);
