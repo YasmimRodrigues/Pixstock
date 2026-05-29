@@ -41,5 +41,16 @@ export const filter = ($filterWrapper, filterObj, callback) => {
 
           delete newObj[filterKey];
           callback(newObj);
-     })
+     });
+
+     $filterColorField?.addEventListener("change", function () {
+          const /** {String} */ filterValue = this.value.toLowerCase();
+
+          $filterValue.innerText = filterValue;
+          $filterChip.classList.add("selected");
+
+          newObj[filterKey] = filterValue;
+          callback(newObj);
+     });
+
 }
