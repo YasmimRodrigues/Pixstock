@@ -32,7 +32,8 @@ const /** {NodeList} */ $filterWrappers = document.querySelectorAll("[data-filte
 
 $filterWrappers.forEach($filterWrapper => {
     filter($filterWrapper, window.filterObj, (newObj) => {
-
+        window.filterObj = newObj;
+        updateUrl(newObj, "photos");
     });
 });
 
