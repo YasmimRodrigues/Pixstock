@@ -9,7 +9,7 @@
  * Import
  */
 
-
+import { client } from "../../js/api_configure.js";
 import { ripple } from "../../js/utils/ripple.js";
 import { gridInit, updateGrid } from "../../js/utils/masonry_grid.js";
 import { photoCard } from "../../js/photo_card.js";
@@ -57,3 +57,28 @@ const /** {String} */ photoId = window.location.search.split("=")[1];
 $favoriteBtn.classList[favoritePhotos[photoId] ? "add" :"remove"]("active");
 
 favorite($favoriteBtn, "photos", photoId);
+
+/**
+ * Render detail data
+ */
+
+const /** {NodeElement} */ $detailWrapper = document.querySelector("[data-detail-wrapper]");
+const /** {NodeElement} */ $downloadLink = document.querySelector("[data-download-link]");
+const /** {NodeElement} */ $downloadMenu = document.querySelector("[data-download-menu]");
+
+client.photos.detail(photoId, data => {
+
+    console.log(data);
+
+    const {
+        avg_color,
+        height,
+        width,
+        photographer,
+        alt,
+        src
+    } = data;
+    
+    $downloadLink.href = src.original;
+
+});
