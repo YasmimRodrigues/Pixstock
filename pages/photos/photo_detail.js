@@ -81,4 +81,25 @@ client.photos.detail(photoId, data => {
     
     $downloadLink.href = src.original;
 
+    Object.entries(src).forEach(item => {
+        const [key, value] = item;
+
+        $downloadMenu.innerHTML += `
+          <a href="${value}" download class="menu-item" data-ripple data-menu-item>
+            <span class="label-large text">${key}</span>
+
+            <div class="state-layer"></div>
+          </a>
+        `;
+
+    });
+
+    $detailWrapper.innerHTML = `
+         <figure class="detail-banner" style="aspect-ratio: ${width} / ${height}, background-color: ${avg_color}">
+            <img src="${src.large2x}" width="${width}" height="${height}" alt="${alt}" class="img-cover">
+        </figure>
+
+        <p class="title-small">Photograph by <span class="color-primary">${photographer}</span></p>
+    `;
+
 });
