@@ -68,8 +68,6 @@ const /** {NodeElement} */ $downloadMenu = document.querySelector("[data-downloa
 
 client.photos.detail(photoId, data => {
 
-    console.log(data);
-
     const {
         avg_color,
         height,
@@ -95,11 +93,52 @@ client.photos.detail(photoId, data => {
     });
 
     $detailWrapper.innerHTML = `
-         <figure class="detail-banner" style="aspect-ratio: ${width} / ${height}, background-color: ${avg_color}">
+         <figure class="detail-banner" style="aspect-ratio: ${width} / ${height}; background-color: ${avg_color}">
             <img src="${src.large2x}" width="${width}" height="${height}" alt="${alt}" class="img-cover">
         </figure>
 
         <p class="title-small">Photograph by <span class="color-primary">${photographer}</span></p>
     `;
 
+    const /** {NodeElement} */ $detailImg = $detailWrapper.querySelector("img");
+
+    $detailImg.style.opacity = 0;
+
+    $detailImg.addEventListener("load", function () {
+
+        this.animate({
+            opacity: 1
+        }, { duration: 400, fill: "forwards" });
+
+        if(alt) {
+            client.photos.search({ query: alt, page: 1, per_page: 30 }, data => {
+                loadSimilar(data);
+            });
+        }else {
+            $loader.style.display = "none";
+            $photoGrid.innerHTML = "<p>No similar photo found. </p>";
+        }
+    });
+
 });
+
+/**
+ * Load similar photos
+ * @param {Object} data Photo data
+ */
+
+const /** {NodeElement} */ $photoGrid = document.querySelector("[data-photo-grid]");
+const /** {Object} */ photoGrid = gridInit($photoGrid);
+const /** {NodeElement} */ $loader = document.querySelector("[data-loader]");
+
+const loadSimilar = function (data) {
+
+    data.photos.forEach(photo => {
+
+        const /** {NodeElement} */ $card = photoCard(photo);
+
+        updateGrid($card, photoGrid.$columnsHeight, photoGrid.$columns);
+        $loader.style.display = "none";
+    });
+
+}
