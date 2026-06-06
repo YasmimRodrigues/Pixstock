@@ -31,7 +31,7 @@ export const videoCard = video => {
         video_files
     } = video;
 
-    const /** {Object} */ sdVideo = video_files.find(item => item.quality === "sd" && item.width < 1000);
+    const /** {Object} */ sdVideo = video_files.find(item => item.quality === "sd" && item.width < 1000) || video_files[0];
     const { file_type, link } = sdVideo;
 
     const /** {NodeElement} */ $card = document.createElement("div");
