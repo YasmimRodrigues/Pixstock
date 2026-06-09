@@ -40,6 +40,30 @@ const loadCollections = function (page) {
 
         });
 
+        isLoaded = true;
+        (currentPage >= totalPage) && ($loader.style.display = "none");
+
     });
 
 }
+
+loadCollections(currentPage);
+
+/**
+ * Load more collections
+ */
+
+const /** {NodeElement} */ $loader = document.querySelector("[data-loader]");
+let /** {Boolean} */ isLoaded = false;
+
+const loadMore = function () {
+    if($loader.getBoundingClientRect().top < (window.innerHeight * 2) && currentPage <= totalPage && isLoaded) {
+
+        currentPage++;
+        loadCollections(currentPage);
+        isLoaded = false;
+        
+    }
+}
+
+window.addEventListener("scroll", loadMore);
