@@ -51,7 +51,6 @@ const /** {NodeElement} */ $searchBtn = document.querySelector("[data-search-btn
 
 $searchBtn.addEventListener("click", function () {
     const /** {Boolean} */ searchValue = $searchField.value.trim();
-    console.log(searchValue);
 
     if(searchValue) {
         updateSearchHistory(searchValue);
