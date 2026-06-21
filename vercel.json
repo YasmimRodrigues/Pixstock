@@ -1,8 +1,9 @@
 {
+  "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/photos", "destination": "/pages/photos/photos.html" },
+    { "source": "/videos", "destination": "/pages/videos/videos.html" },
+    { "source": "/collections", "destination": "/pages/collections/collection.html" },
+    { "source": "/favorite", "destination": "/pages/favorite/favorite.html" }
   ]
 }
