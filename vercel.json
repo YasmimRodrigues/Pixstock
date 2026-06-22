@@ -2,8 +2,11 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/photos", "destination": "/pages/photos/photos.html" },
+    { "source": "/photo_detail", "destination": "/pages/photos/photo_detail.html" },
     { "source": "/videos", "destination": "/pages/videos/videos.html" },
+    { "source": "/video_detail", "destination": "/pages/videos/video_detail.html" },
     { "source": "/collections", "destination": "/pages/collections/collection.html" },
+    { "source": "/collection_detail", "destination": "/pages/collections/collection_detail.html" },
     { "source": "/favorite", "destination": "/pages/favorite/favorite.html" }
   ]
 }

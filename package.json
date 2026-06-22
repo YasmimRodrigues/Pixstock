@@ -13,13 +13,5 @@
   "description": "",
   "devDependencies": {
     "vite": "^6.4.1"
-  },
-  "cleanUrls": true,
-  "rewrites": [
-    { "source": "/photos", "destination": "/photos/photos.html" },
-    { "source": "/videos", "destination": "/videos/videos.html" },
-    { "source": "/collections", "destination": "/collections/collection.html" },
-    { "source": "/favorite", "destination": "/favorite/favorite.html" }
-  ]
-
+  }
 }
